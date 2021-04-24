@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
+import SwiperCore, {
+ Mousewheel,
+ Navigation,
+ Pagination,
+ Scrollbar,
+ A11y,
+ Autoplay,
+} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
 
 const Calculator = () => {
  const initialState = {
@@ -31,21 +43,21 @@ const Calculator = () => {
   setValues({ initialState });
  };
 
- const saveData = (e) => {
-  e.preventDefault();
-  console.log(arrayOfValues);
-  setArrayOfValues([...arrayOfValues, values.result]);
-  //arrayOfValues.push(values.result);
-  console.log(arrayOfValues);
-  //   arrayOfValues.map((item, index) => {
-  //    arr1.push(<SwiperSlide key={index}>{item}</SwiperSlide>);
-  //   });
-  //   setList({
-  //    list1: arr1,
-  //   });
+ // //  const saveData = (e) => {
+ // //   e.preventDefault();
+ // //   console.log(arrayOfValues);
+ // //   setArrayOfValues([...arrayOfValues, values.result]);
+ // //   //arrayOfValues.push(values.result);
+ // //   console.log(arrayOfValues);
+ // //   //   arrayOfValues.map((item, index) => {
+ // //   //    arr1.push(<SwiperSlide key={index}>{item}</SwiperSlide>);
+ // //   //   });
+ // //   //   setList({
+ // //   //    list1: arr1,
+ // //   //   });
 
-  return arrayOfValues;
- };
+ //   return arrayOfValues;
+ //  };
 
  const handleFiles = (e) => {
   setFileListMain([...fileListMain, Array.from(e.target.files)]);
@@ -57,8 +69,8 @@ const Calculator = () => {
        <img
         src={URL.createObjectURL(item1)}
         alt={item1.name}
-        width='200'
-        height='200'
+        width='500'
+        height='500'
        />
       </SwiperSlide>
      );
@@ -71,6 +83,15 @@ const Calculator = () => {
   });
   console.log(fileListMain);
  };
+
+ SwiperCore.use([
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Mousewheel,
+  Autoplay,
+ ]);
 
  return (
   <div>
@@ -94,22 +115,56 @@ const Calculator = () => {
     ></input>
     <h1 placeholder='result'>{values.result}</h1>
 
-    <button type='submit' id='save' onClick={saveData}>
-     Save
-    </button>
     <input type='file' onChange={handleFiles} multiple></input>
 
-    <div className='swiper-container'>
-     <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-      loop={true}
-     >
-      {list.list1}
-     </Swiper>
-    </div>
+    <Swiper
+     className='swiper1'
+     autoplay={{ delay: 5000, disableOnInteraction: false }}
+     speed={2000}
+     direction={'horizontal'}
+     spaceBetween={50}
+     slidesPerView={1}
+     navigation={{
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+     }}
+     pagination={{ clickable: true, el: '.swiper-pagination' }}
+     //scrollbar={{ draggable: true }}
+     onSwiper={(swiper) => console.log(swiper)}
+    >
+     <SwiperSlide key={Math.floor(Math.random() * 10000)}>
+      <img
+       src={
+        'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dW5pdmVyc2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'
+       }
+       alt='Image0'
+       width='500'
+       height='500'
+      />
+     </SwiperSlide>
+     <SwiperSlide key={Math.floor(Math.random() * 10000)}>
+      <img
+       src={'https://static.toiimg.com/photo/72975551.cms'}
+       alt='Image1'
+       width='500'
+       height='500'
+      />
+     </SwiperSlide>
+     <SwiperSlide key={Math.floor(Math.random() * 10000)}>
+      <img
+       src={
+        'https://www.gettyimages.de/gi-resources/images/500px/983794168.jpg'
+       }
+       alt='Image2'
+       width='500'
+       height='500'
+      />
+     </SwiperSlide>
+     {list.list1}
+     <div className='swiper-button-next'></div>
+     <div className='swiper-button-prev'></div>
+     <div className='swiper-pagination'></div>
+    </Swiper>
    </form>
   </div>
  );

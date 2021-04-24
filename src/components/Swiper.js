@@ -6,10 +6,19 @@ import 'swiper/swiper.scss';
 export default () => {
  return (
   <Swiper
+   mousewheel={{ invert: true }}
+   navigation={{
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+   }}
+   autoplay={{ delay: 5000 }}
+   scrollbar={{ el: '.swiper-scrollbar', draggable: true }}
+   speed={600}
    spaceBetween={50}
-   slidesPerView={5}
-   onSlideChange={() => console.log('slide change')}
+   slidesPerView={3}
    onSwiper={(swiper) => console.log(swiper)}
+   loop={true}
+   direction={'horizontal'}
   >
    <SwiperSlide>Slide 1</SwiperSlide>
    <SwiperSlide>Slide 2</SwiperSlide>
