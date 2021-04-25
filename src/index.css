@@ -1,13 +1,79 @@
+html {
+ width: 100%;
+ height: 100%;
+ background: -webkit-radial-gradient(
+   rgba(16, 47, 70, 0) 60%,
+   rgba(16, 47, 70, 0.258824) 100%
+  ),
+  linear-gradient(108deg, rgb(183, 28, 28) 0, rgb(26, 35, 126) 90%),
+  rgba(0, 0, 0, 0);
+ background: -moz-radial-gradient(
+   rgba(16, 47, 70, 0) 60%,
+   rgba(16, 47, 70, 0.258824) 100%
+  ),
+  linear-gradient(108deg, rgb(183, 28, 28) 0, rgb(26, 35, 126) 90%),
+  rgba(0, 0, 0, 0);
+ background: -o-radial-gradient(
+   rgba(16, 47, 70, 0) 60%,
+   rgba(16, 47, 70, 0.258824) 100%
+  ),
+  linear-gradient(108deg, rgb(183, 28, 28) 0, rgb(26, 35, 126) 90%),
+  rgba(0, 0, 0, 0);
+ background: -ms-radial-gradient(
+   rgba(16, 47, 70, 0) 60%,
+   rgba(16, 47, 70, 0.258824) 100%
+  ),
+  linear-gradient(108deg, rgb(183, 28, 28) 0, rgb(26, 35, 126) 90%),
+  rgba(0, 0, 0, 0);
+ background: radial-gradient(
+   rgba(16, 47, 70, 0) 60%,
+   rgba(16, 47, 70, 0.258824) 100%
+  ),
+  linear-gradient(108deg, rgb(183, 28, 28) 0, rgb(26, 35, 126) 90%),
+  rgba(0, 0, 0, 0);
+ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#c5deea', endColorstr='#066dab', GradientType=1);
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ width: 100%;
+ height: 100%;
+ text-align: center;
+ margin: 0;
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ color: white;
+}
+body,
+html {
+ height: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+input[type='text'],
+input[type='text']:focus {
+ color: #fff;
+ border: none;
+ background: rgba(0, 0, 0, 0.2);
+ max-width: 400px;
+}
+button {
+ color: white;
+ background-color: #1684eb;
+ border: none;
+ text-align: center;
+ transition: all 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+button:hover {
+ background-color: #fa6807;
+}
+
+div.todoForm {
+ padding: 50px;
+}
+form.calculatorForm {
+ padding: 50px;
 }

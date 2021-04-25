@@ -21,8 +21,6 @@ const Calculator = () => {
  };
  const [fileListMain, setFileListMain] = useState([]);
  const arr1 = [];
-
- const [arrayOfValues, setArrayOfValues] = useState([]);
  const [list, setList] = useState({
   list1: arr1,
  });
@@ -34,43 +32,22 @@ const Calculator = () => {
    [e.target.name]: e.target.value,
   });
  };
-
- const handleClick = (e) => {
-  e.preventDefault();
- };
-
- const clearFields = () => {
-  setValues({ initialState });
- };
-
- // //  const saveData = (e) => {
- // //   e.preventDefault();
- // //   console.log(arrayOfValues);
- // //   setArrayOfValues([...arrayOfValues, values.result]);
- // //   //arrayOfValues.push(values.result);
- // //   console.log(arrayOfValues);
- // //   //   arrayOfValues.map((item, index) => {
- // //   //    arr1.push(<SwiperSlide key={index}>{item}</SwiperSlide>);
- // //   //   });
- // //   //   setList({
- // //   //    list1: arr1,
- // //   //   });
-
- //   return arrayOfValues;
- //  };
-
  const handleFiles = (e) => {
   setFileListMain([...fileListMain, Array.from(e.target.files)]);
-  fileListMain.map((item, index) => {
-   item.map((item1, index1) => {
+  console.log(fileListMain);
+ };
+ const uploadFiles = () => {
+  fileListMain.map((item) => {
+   item.map((item1) => {
     if (item1.type === 'image/png' || item1.type === 'image/jpeg') {
      arr1.push(
       <SwiperSlide key={Math.floor(Math.random() * 10000)}>
        <img
+        className='SwiperImage'
         src={URL.createObjectURL(item1)}
         alt={item1.name}
-        width='500'
-        height='500'
+        width='300'
+        height='300'
        />
       </SwiperSlide>
      );
@@ -81,8 +58,8 @@ const Calculator = () => {
   setList({
    list1: arr1,
   });
-  console.log(fileListMain);
  };
+ values.result = values.firstDigit - -values.secondDigit;
 
  SwiperCore.use([
   Navigation,
@@ -95,76 +72,85 @@ const Calculator = () => {
 
  return (
   <div>
-   <form>
+   <form className='calculatorForm'>
     <input
+     type='text'
      name='firstDigit'
      placeholder='first digit'
      onChange={handleChange}
     ></input>
-    <button
-     type='submit'
-     id='plus'
-     onClick={(values.result = values.firstDigit - -values.secondDigit)} //(values.result = values.firstDigit - -values.secondDigit)}
+    <div //(values.result = values.firstDigit - -values.secondDigit)}
     >
      +
-    </button>
+    </div>
     <input
+     type='text'
      name='secondDigit'
      placeholder='second digit'
      onChange={handleChange}
     ></input>
     <h1 placeholder='result'>{values.result}</h1>
 
-    <input type='file' onChange={handleFiles} multiple></input>
+    <input id='chooseFiles' type='file' onChange={handleFiles} multiple></input>
+    <button type='button' onClick={uploadFiles}>
+     Upload Images
+    </button>
 
-    <Swiper
-     className='swiper1'
-     autoplay={{ delay: 5000, disableOnInteraction: false }}
-     speed={2000}
-     direction={'horizontal'}
-     spaceBetween={50}
-     slidesPerView={1}
-     navigation={{
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-     }}
-     pagination={{ clickable: true, el: '.swiper-pagination' }}
-     //scrollbar={{ draggable: true }}
-     onSwiper={(swiper) => console.log(swiper)}
-    >
-     <SwiperSlide key={Math.floor(Math.random() * 10000)}>
-      <img
-       src={
-        'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dW5pdmVyc2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'
-       }
-       alt='Image0'
-       width='500'
-       height='500'
-      />
-     </SwiperSlide>
-     <SwiperSlide key={Math.floor(Math.random() * 10000)}>
-      <img
-       src={'https://static.toiimg.com/photo/72975551.cms'}
-       alt='Image1'
-       width='500'
-       height='500'
-      />
-     </SwiperSlide>
-     <SwiperSlide key={Math.floor(Math.random() * 10000)}>
-      <img
-       src={
-        'https://www.gettyimages.de/gi-resources/images/500px/983794168.jpg'
-       }
-       alt='Image2'
-       width='500'
-       height='500'
-      />
-     </SwiperSlide>
-     {list.list1}
-     <div className='swiper-button-next'></div>
-     <div className='swiper-button-prev'></div>
-     <div className='swiper-pagination'></div>
-    </Swiper>
+    <div className='swiper2'>
+     <Swiper
+      height={500}
+      className='swiper1'
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
+      speed={2000}
+      direction={'horizontal'}
+      spaceBetween={50}
+      slidesPerView={1}
+      navigation={{
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+      }}
+      pagination={{ clickable: true, el: '.swiper-pagination' }}
+      //scrollbar={{ draggable: true }}
+      onSwiper={(swiper) => console.log(swiper)}
+     >
+      <SwiperSlide key={Math.floor(Math.random() * 10000)}>
+       <img
+        className='SwiperImage'
+        src={
+         'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dW5pdmVyc2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'
+        }
+        alt='Image0'
+        width='300'
+        height='300'
+       />
+      </SwiperSlide>
+      <SwiperSlide key={Math.floor(Math.random() * 10000)}>
+       <img
+        className='SwiperImage'
+        src={'https://static.toiimg.com/photo/72975551.cms'}
+        alt='Image1'
+        width='300'
+        height='300'
+       />
+      </SwiperSlide>
+      <SwiperSlide key={Math.floor(Math.random() * 10000)}>
+       <img
+        className='SwiperImage'
+        src={
+         'https://media1.tenor.com/images/92103966acc3e0133f466a3171d9b4b5/tenor.gif?itemid=19665244'
+        }
+        alt='Image2'
+        width='300'
+        height='300'
+       />
+      </SwiperSlide>
+
+      {list.list1}
+      <div className='swiper-button-next'></div>
+      <div className='swiper-button-prev'></div>
+      <div className='swiper-pagination'></div>
+     </Swiper>
+    </div>
    </form>
   </div>
  );
